@@ -14,6 +14,7 @@ import {
   LandmarkIcon,
   LogOutIcon,
   ReceiptIcon,
+  Rotate3DIcon,
   SettingsIcon,
   Wallet2Icon,
 } from "lucide-react";
@@ -39,8 +40,13 @@ export default function Sidebar() {
       icon: Wallet2Icon,
     },
     {
-      name: "Bills",
-      href: routes.app.bills.index,
+      name: "Taxes",
+      href: routes.app.taxes.index,
+      icon: Rotate3DIcon,
+    },
+    {
+      name: "Funding",
+      href: routes.app.funding.index,
       icon: HandCoinsIcon,
     },
     {

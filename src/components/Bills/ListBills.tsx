@@ -45,10 +45,10 @@ function ListBills() {
   const [totalValue, setTotalValue] = useState<number>(0);
   const [completedBills, setCompleteBills] = useState<Bills[]>([]);
   const { address } = useAccount();
-  const { dexaBillAddr, DexaBillAbi } = useDexa();
+  const { FundingAddr, FundingAbi } = useDexa();
   const { data } = useReadContract({
-    abi: DexaBillAbi,
-    address: dexaBillAddr,
+    abi: FundingAbi,
+    address: FundingAddr,
     functionName: "getAllUsersBills",
     account: address,
   });

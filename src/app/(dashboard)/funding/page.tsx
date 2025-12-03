@@ -10,7 +10,7 @@ import Container from "@/components/layouts/Container";
 import ListBills from "@/components/Bills/ListBills";
 import UserPFP from "@/components/ui/UserPFP";
 
-function Bills() {
+function Funding() {
   const { user } = useAuth();
   return (
     <Container>
@@ -34,4 +34,4 @@ function Bills() {
   );
 }
 
-export default Bills;
+export default Funding;

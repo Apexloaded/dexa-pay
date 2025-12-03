@@ -8,6 +8,11 @@ export enum ParticipantType {
   Multiple = "1",
 }
 
+export enum PaymentScheme {
+  Rotation = "0",
+  Random = "1",
+}
+
 export interface Bills {
   id: string;
   billId: string;

@@ -20,10 +20,13 @@ export const routes = {
       index: "/payments",
       create: "/payments/create",
     },
-    bills: {
-      index: "/bills",
-      create: "/bills/create",
-      pay: "/bills/pay",
+    funding: {
+      index: "/funding",
+      create: "/funding/create",
+      pay: "/funding/pay",
+    },
+    taxes: {
+      index: '/taxes'
     },
     savings: {
       index: "/savings",

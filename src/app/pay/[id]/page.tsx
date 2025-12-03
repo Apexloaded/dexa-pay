@@ -160,9 +160,9 @@ function Pay() {
   };
 
   return (
-    <div className="">
+    <div className="bg-primary/10 pt-40 h-svh">
       {connectModal && <WalletConnectModal setModal={setConnectModal} />}
-      <div className="max-w-xl mx-auto mt-40 px-5">
+      <div className="max-w-xl mx-auto bg-white p-5 shadow-md rounded-xl">
         <div className="flex justify-start items-center gap-x-2">
           <Image
             src={favicon.main}

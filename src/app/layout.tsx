@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Barlow } from "next/font/google";
-import "./globals.css";
+import "./globals.scss";
 import RootProviders from "@/components/RootProviders";
 import { headers } from "next/headers";
 import { cookieToInitialState } from "wagmi";

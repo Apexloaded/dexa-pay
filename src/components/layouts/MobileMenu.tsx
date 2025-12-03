@@ -13,7 +13,7 @@ function MobileMenu() {
   useEffect(() => {
     router.prefetch(routes.app.payments.index);
     router.prefetch(routes.app.home);
-    router.prefetch(routes.app.bills.index);
+    router.prefetch(routes.app.funding.index);
     router.prefetch(routes.app.settings);
   }, []);
 
@@ -50,7 +50,7 @@ function MobileMenu() {
         </Button>
         <Button
           onClick={() => {
-            navigateTo(routes.app.bills.index);
+            navigateTo(routes.app.funding.index);
           }}
           type={"button"}
           kind={"default"}

@@ -72,11 +72,11 @@ function Wallet() {
   const [paidReq, setPaidReq] = useState<IPaymentRequest[]>([]);
   const { setItem } = useStorage();
   const { usdRate, ethRate } = useConverter();
-  const { dexaPayAddr, DexaPayAbi } = useDexa();
+  const { GatewayAddr, GatewayAbi } = useDexa();
   const { user } = useAuth();
   const { data, queryKey } = useReadContract({
-    abi: DexaPayAbi,
-    address: dexaPayAddr,
+    abi: GatewayAbi,
+    address: GatewayAddr,
     functionName: "getUserRequests",
     account: toOxString(user?.wallet),
     query: {

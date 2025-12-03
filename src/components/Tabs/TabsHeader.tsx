@@ -1,5 +1,9 @@
 import React from "react";
 
+const textPosClass = {
+  CENTER: "text-center justify-center items-center",
+  LEFT: "text-left justify-start items-start",
+};
 interface Props
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
@@ -13,6 +17,8 @@ interface Props
   isActiveBg?: boolean;
   isActiveText?: boolean;
   isCenter?: boolean;
+  textPos?: "CENTER" | "LEFT";
+  isMarker?: boolean;
 }
 
 function TabsHeader({
@@ -24,20 +30,32 @@ function TabsHeader({
   isActiveBg,
   isActiveText,
   isCenter = true,
+  textPos = "LEFT",
+  isMarker = true,
   ...prop
 }: Props) {
   const bg = activeTabId === value && isActiveBg ? "bg-primary/10" : "";
-  const textColor = activeTabId === value && isActiveText ? "text-primary" : "hover:text-primary";
-  const alignClass = isCenter ? "flex-1" : "flex-0"
+  const textColor =
+    activeTabId === value && isActiveText
+      ? "text-primary"
+      : "hover:text-primary";
+  const alignClass = isCenter ? "flex-1" : "flex-0";
+
   return (
     <div
       {...prop}
       onClick={() => onTabChange(value)}
-      className={`h-8 font-medium relative select-none ${bg} text-medium text-sm flex ${alignClass} items-start justify-start hover:bg-text-primary cursor-pointer ${className}`}
+      className={`h-8 font-medium relative select-none ${bg} text-medium text-sm flex ${alignClass} ${textPosClass[textPos]} hover:bg-text-primary cursor-pointer ${className}`}
     >
-      <p className={`${textColor} text-left`}>{title}</p>
-      {activeTabId === value && (
-        <div className={`h-1 bg-primary w-8 rounded-md absolute bottom-0`}></div>
+      <p className={`${textColor}`}>{title}</p>
+      {isMarker && (
+        <>
+          {activeTabId === value && (
+            <div
+              className={`h-1 bg-primary w-8 rounded-md absolute bottom-0`}
+            ></div>
+          )}
+        </>
       )}
     </div>
   );

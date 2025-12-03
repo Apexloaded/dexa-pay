@@ -27,7 +27,7 @@ import {
   setIsConnected,
 } from "@/slices/account/auth.slice";
 import DexaPay from "@/contracts/DexaPay";
-import { DEXA_PAY } from "@/config/constants";
+import { GATEWAY_CONTRACT } from "@/config/constants";
 import {
   timestampToDate,
   toOxString,
@@ -49,7 +49,7 @@ import {
 import { client } from "@/libs/paymasterClient";
 import { UserOperation } from "permissionless";
 
-const dexaPayAddr = toOxString(DEXA_PAY);
+const gatewayAddr = toOxString(GATEWAY_CONTRACT);
 
 function useUser() {
   const router = useRouter();
@@ -71,7 +71,7 @@ function useUser() {
   const { getItem, setItem } = useStorage();
   const { data, refetch: findUser } = useReadContract({
     abi: DexaPay,
-    address: dexaPayAddr,
+    address: gatewayAddr,
     functionName: "findUser",
     args: [toOxString(address)],
     query: { enabled: wallet ? true : false },
@@ -79,7 +79,7 @@ function useUser() {
 
   const { data: bal } = useReadContract({
     abi: DexaPay,
-    address: dexaPayAddr,
+    address: gatewayAddr,
     functionName: "getBalances",
     args: [toOxString(address)],
   });

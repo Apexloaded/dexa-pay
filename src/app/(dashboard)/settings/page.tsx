@@ -13,6 +13,7 @@ import TabsContent from "@/components/Tabs/TabsContent";
 import ProfileTab from "@/components/Settings/ProfileTab";
 import ContactTab from "@/components/Settings/ContactTab";
 import SecurityTab from "@/components/Settings/SecurityTab";
+import APIKeyTab from "@/components/Settings/APIKeyTab";
 
 function Settings() {
   const { user } = useAuth();
@@ -60,6 +61,14 @@ function Settings() {
                   onTabChange={onTabChange}
                   isCenter={false}
                 />
+                <TabsHeader
+                  isActiveText={true}
+                  title="API Key & Webhooks"
+                  value="tab4"
+                  activeTabId={activeTab}
+                  onTabChange={onTabChange}
+                  isCenter={false}
+                />
               </TabsList>
               <TabsContent
                 value="tab1"
@@ -78,6 +87,11 @@ function Settings() {
               <TabsContent value="tab3" activeTabId={activeTab}>
                 <div className="flex">
                   <SecurityTab />
+                </div>
+              </TabsContent>
+              <TabsContent value="tab4" activeTabId={activeTab}>
+                <div className="flex">
+                  <APIKeyTab />
                 </div>
               </TabsContent>
             </TabsRoot>
