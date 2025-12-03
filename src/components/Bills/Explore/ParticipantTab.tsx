@@ -16,10 +16,10 @@ type Props = {
 function ParticipantTab({ bill }: Props) {
   const token = Tokens.find((t) => t.address == bill.billToken);
   const [participants, setParticipants] = useState<BillParticipants[]>([]);
-  const { dexaBillAddr, DexaBillAbi } = useDexa();
+  const { FundingAddr, FundingAbi } = useDexa();
   const { data } = useReadContract({
-    abi: DexaBillAbi,
-    address: dexaBillAddr,
+    abi: FundingAbi,
+    address: FundingAddr,
     functionName: "getBillParticipants",
     args: [bill.id],
   });

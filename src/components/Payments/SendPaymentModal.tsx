@@ -57,7 +57,7 @@ function SendPaymentModal({ isOpen, setIsOpen }: Props) {
   const [resetKey, setResetKey] = useState<number>(0);
   const [selectedToken, setSelectedToken] = useState<Options>();
   const [tokenBalance, setTokenBalance] = useState<UserBalance>();
-  const { dexaPayAddr, DexaPayAbi } = useDexa();
+  const { GatewayAddr, GatewayAbi } = useDexa();
   const capabilities = useDexaCapabilities({ address, chainId, isSmartWallet });
   const { data: callID, writeContractsAsync, isPending } = useWriteContracts();
   const { writeContractAsync } = useWriteContract();
@@ -68,8 +68,8 @@ function SendPaymentModal({ isOpen, setIsOpen }: Props) {
   );
 
   const { data } = useReadContract({
-    abi: DexaPayAbi,
-    address: dexaPayAddr,
+    abi: GatewayAbi,
+    address: GatewayAddr,
     functionName: "getBalances",
     args: [`${address}`],
   });
@@ -124,8 +124,8 @@ function SendPaymentModal({ isOpen, setIsOpen }: Props) {
       const payId = hexlify(toUtf8Bytes(paymentReq.data.paymentId));
       const email = hexlify(toUtf8Bytes(paymentReq.data.email));
       const contractProps: any = {
-        abi: DexaPayAbi,
-        address: dexaPayAddr,
+        abi: GatewayAbi,
+        address: GatewayAddr,
         functionName: "payByEmail",
         args: [parseEther(`${amount}`), email, remark, token, payId],
       };

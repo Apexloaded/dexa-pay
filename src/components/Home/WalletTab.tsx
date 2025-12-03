@@ -31,8 +31,10 @@ import { CircleCheck, XIcon } from "lucide-react";
 import { Tokens } from "@/libs/tokens";
 import { useQuery } from "@tanstack/react-query";
 import { fetchTxCount } from "@/actions/transaction.action";
-import { setDepositModal, setWithdrawModal } from "@/slices/modals/modals.slice";
-
+import {
+  setDepositModal,
+  setWithdrawModal,
+} from "@/slices/modals/modals.slice";
 
 function WalletTab() {
   const isHidden = useAppSelector(selectHideBalance);
@@ -46,7 +48,7 @@ function WalletTab() {
   const [txCount, setTxCount] = useState<number>(0);
   const { setItem } = useStorage();
   const { usdRate, ethRate } = useConverter();
-  const { dexaPayAddr, DexaPayAbi } = useDexa();
+  const { GatewayAddr, GatewayAbi } = useDexa();
   const { user, isSmartWallet } = useAuth();
   const { data: txCountResponse } = useQuery({
     queryFn: () => fetchTxCount(),
@@ -54,8 +56,8 @@ function WalletTab() {
   });
 
   const { data } = useReadContract({
-    abi: DexaPayAbi,
-    address: dexaPayAddr,
+    abi: GatewayAbi,
+    address: GatewayAddr,
     functionName: "getBalances",
     args: [`${user?.wallet}`],
   });

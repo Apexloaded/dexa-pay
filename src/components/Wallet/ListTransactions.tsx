@@ -12,11 +12,11 @@ import TxBodyItems from "../Transactions/TxBodyItems";
 
 function ListTransactions() {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
-  const { dexaPayAddr, DexaPayAbi } = useDexa();
+  const { GatewayAddr, GatewayAbi } = useDexa();
   const { user } = useAuth();
   const { data } = useReadContract({
-    abi: DexaPayAbi,
-    address: dexaPayAddr,
+    abi: GatewayAbi,
+    address: GatewayAddr,
     functionName: "getUserTransactions",
     account: toOxString(user?.wallet),
     query: {

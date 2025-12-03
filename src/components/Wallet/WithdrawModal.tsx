@@ -51,7 +51,7 @@ function WithdrawModal() {
   const [receiver, setReceiver] = useState<string>();
   const [selectedToken, setSelectedToken] = useState<Options>();
   const [tokenBalance, setTokenBalance] = useState<UserBalance>();
-  const { dexaPayAddr, DexaPayAbi } = useDexa();
+  const { GatewayAddr, GatewayAbi } = useDexa();
   const { isPending, onSubmit: initSubmit } = useWithdraw();
   const [options] = useState(
     Tokens.map((t) => {
@@ -60,8 +60,8 @@ function WithdrawModal() {
   );
 
   const { data } = useReadContract({
-    abi: DexaPayAbi,
-    address: dexaPayAddr,
+    abi: GatewayAbi,
+    address: GatewayAddr,
     functionName: "getBalances",
     args: [`${address}`],
   });

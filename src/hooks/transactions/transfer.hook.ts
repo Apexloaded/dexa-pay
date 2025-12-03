@@ -19,7 +19,7 @@ interface ITransferFunction {
 }
 
 function useTransfer() {
-  const { dexaPayAddr, DexaPayAbi } = useDexa();
+  const { GatewayAddr, GatewayAbi } = useDexa();
   const { loading, error, success } = useToast();
   const { address, chainId } = useAccount();
   const { isSmartWallet } = useAuth();
@@ -48,8 +48,8 @@ function useTransfer() {
       });
       await addBeneficiary({ user: `${address}`, wallet: to, name: username });
       const contractProps: any = {
-        abi: DexaPayAbi,
-        address: dexaPayAddr,
+        abi: GatewayAbi,
+        address: GatewayAddr,
         functionName: "transferInternal",
         args: [to, parseEther(`${amount}`), token, remark],
       };

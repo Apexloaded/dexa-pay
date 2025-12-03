@@ -36,7 +36,7 @@ import { toOxString, weiToUnit } from "@/libs/helpers";
 
 function Pay() {
   const { id } = useParams();
-  const { DexaPayAbi, dexaPayAddr, ERC20ABI } = useDexa();
+  const { GatewayAbi, GatewayAddr, ERC20ABI } = useDexa();
   const { emit } = useSocket();
   const { address } = useAccount();
   const [hexId, setHexId] = useState<string>();
@@ -49,8 +49,8 @@ function Pay() {
   const [requestHash, setRequestHash] = useState<`0x${string}`>();
   const { writeContractAsync, isPending } = useWriteContract();
   const { data, isLoading } = useReadContract({
-    abi: DexaPayAbi,
-    address: dexaPayAddr,
+    abi: GatewayAbi,
+    address: GatewayAddr,
     functionName: "getRequest",
     args: [hexId],
     query: { enabled: !!hexId },
@@ -65,7 +65,7 @@ function Pay() {
     abi: ERC20ABI,
     functionName: "allowance",
     address: toOxString(`${request?.token}`),
-    args: [toOxString(address), dexaPayAddr],
+    args: [toOxString(address), GatewayAddr],
     scopeKey: `${request?.token}`,
   });
 
@@ -114,7 +114,7 @@ function Pay() {
           abi: ERC20ABI,
           address: toOxString(`${request?.token}`),
           functionName: "approve",
-          args: [dexaPayAddr, parseEther(`${request?.amount}`)],
+          args: [GatewayAddr, parseEther(`${request?.amount}`)],
         },
         {
           onSuccess: async (data) => {
@@ -136,8 +136,8 @@ function Pay() {
       });
       await writeContractAsync(
         {
-          abi: DexaPayAbi,
-          address: dexaPayAddr,
+          abi: GatewayAbi,
+          address: GatewayAddr,
           functionName: "fulfillRequest",
           args: [hexId],
         },

@@ -62,11 +62,11 @@ function RegisterUser() {
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
   const { isConnected, wallet } = useAppSelector(selectConnector);
   const { writeContractAsync } = useWriteContract();
-  const { DexaPayAbi, dexaPayAddr } = useDexa();
+  const { GatewayAbi, GatewayAddr } = useDexa();
   const { error, success, loading } = useToast();
   const { data, refetch } = useReadContract({
-    abi: DexaPayAbi,
-    address: dexaPayAddr,
+    abi: GatewayAbi,
+    address: GatewayAddr,
     functionName: "isNameFree",
     args: [username],
     query: { enabled: false },
@@ -110,8 +110,8 @@ function RegisterUser() {
       const { name, username } = data;
       await writeContractAsync(
         {
-          abi: DexaPayAbi,
-          address: dexaPayAddr,
+          abi: GatewayAbi,
+          address: GatewayAddr,
           functionName: "registerUser",
           args: [username, name, payId],
         },

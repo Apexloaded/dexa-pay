@@ -59,7 +59,7 @@ function TransferModal({ isOpen, setIsOpen }: Props) {
   const [resetKey, setResetKey] = useState<number>(0);
   const [selectedToken, setSelectedToken] = useState<Options>();
   const [tokenBalance, setTokenBalance] = useState<UserBalance>();
-  const { dexaPayAddr, DexaPayAbi } = useDexa();
+  const { GatewayAddr, GatewayAbi } = useDexa();
   const { onSubmit: initOnSubmit, isPending } = useTransfer();
   const [options] = useState(
     Tokens.map((t) => {
@@ -68,16 +68,16 @@ function TransferModal({ isOpen, setIsOpen }: Props) {
   );
 
   const { data } = useReadContract({
-    abi: DexaPayAbi,
-    address: dexaPayAddr,
+    abi: GatewayAbi,
+    address: GatewayAddr,
     functionName: "getBalances",
     args: [`${address}`],
   });
 
   const { refetch: findUserByUsername, isFetching: isFetchingUser } =
     useReadContract({
-      abi: DexaPayAbi,
-      address: dexaPayAddr,
+      abi: GatewayAbi,
+      address: GatewayAddr,
       functionName: "getUserByName",
       args: [username],
       query: { enabled: false },

@@ -55,7 +55,7 @@ function DepositModal() {
       return { value: t.address, name: t.symbol, icon: t.icon };
     })
   );
-  const { dexaPayAddr, ERC20ABI } = useDexa();
+  const { GatewayAddr, ERC20ABI } = useDexa();
   const { data: ethBalance } = useBalance({ address: address });
   const {
     isPending,
@@ -67,7 +67,7 @@ function DepositModal() {
     abi: ERC20ABI,
     functionName: "allowance",
     address: toOxString(selectedToken?.value),
-    args: [toOxString(address), dexaPayAddr],
+    args: [toOxString(address), GatewayAddr],
     scopeKey: selectedToken?.value,
   });
 

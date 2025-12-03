@@ -16,7 +16,7 @@ interface IWithdrawFunction {
 }
 
 function useWithdraw() {
-  const { dexaPayAddr, DexaPayAbi } = useDexa();
+  const { GatewayAddr, GatewayAbi } = useDexa();
   const { loading, error, success } = useToast();
   const { address, chainId } = useAccount();
   const { isSmartWallet } = useAuth();
@@ -42,8 +42,8 @@ function useWithdraw() {
         msg: "Initiating withdrawal",
       });
       const contractProps: any = {
-        abi: DexaPayAbi,
-        address: dexaPayAddr,
+        abi: GatewayAbi,
+        address: GatewayAddr,
         functionName: "transferExternal",
         args: [to, parseEther(`${amount}`), token, ""],
       };

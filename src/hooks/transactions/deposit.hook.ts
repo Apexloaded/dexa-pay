@@ -25,7 +25,7 @@ interface ISubmit extends IDepostFunction {
 }
 
 function useDeposit() {
-  const { dexaPayAddr, DexaPayAbi, ERC20ABI } = useDexa();
+  const { GatewayAddr, GatewayAbi, ERC20ABI } = useDexa();
   const { loading, error, success } = useToast();
   const { address, chainId } = useAccount();
   const { isSmartWallet } = useAuth();
@@ -55,7 +55,7 @@ function useDeposit() {
             abi: ERC20ABI,
             address: toOxString(token),
             functionName: "approve",
-            args: [dexaPayAddr, parseEther(`${amount}`)],
+            args: [GatewayAddr, parseEther(`${amount}`)],
           },
           {
             onSuccess: async (data) => {
@@ -91,8 +91,8 @@ function useDeposit() {
       });
       const isZero = token == ZeroAddress;
       const contractProps: any = {
-        abi: DexaPayAbi,
-        address: dexaPayAddr,
+        abi: GatewayAbi,
+        address: GatewayAddr,
         functionName: "deposit",
         args: [parseEther(`${amount}`), token],
       };

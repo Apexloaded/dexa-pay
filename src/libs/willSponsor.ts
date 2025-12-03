@@ -17,8 +17,8 @@ import {
 } from "@/config/constants";
 import coinbaseSmartWalletABI from "@/contracts/PayMaster";
 import DexaPay from "@/contracts/DexaPay";
-import { DEXA_PAY } from "@/config/constants";
-const dexaPayAddr = toOxString(DEXA_PAY);
+import { GATEWAY_CONTRACT } from "@/config/constants";
+const dexaPayAddr = toOxString(GATEWAY_CONTRACT);
 import { toOxString } from "./helpers";
 
 export async function willSponsor({

@@ -44,11 +44,11 @@ const participantProps = {
 function BillTableBody({ bill }: Props) {
   const token = Tokens.find((t) => t.address == bill.billToken);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { dexaBillAddr, DexaBillAbi } = useDexa();
+  const { FundingAddr, FundingAbi } = useDexa();
   const [tnxs, setTnxs] = useState<ITransaction[]>([]);
   const { data } = useReadContract({
-    abi: DexaBillAbi,
-    address: dexaBillAddr,
+    abi: FundingAbi,
+    address: FundingAddr,
     functionName: "getBillTransactions",
     args: [bill.billId],
   });

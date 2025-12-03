@@ -48,7 +48,7 @@ function FundBillModal({ isOpen, setIsOpen, bill }: Props) {
   const [request, setRequest] = useState<boolean>(false);
   const [requestHash, setRequestHash] = useState<`0x${string}`>();
   const { writeContractAsync, isPending } = useWriteContract();
-  const { DexaBillAbi, dexaBillAddr, ERC20ABI } = useDexa();
+  const { FundingAbi, FundingAddr, ERC20ABI } = useDexa();
 
   const { isLoading: isConfirming, isSuccess: isConfirmed } =
     useWaitForTransactionReceipt({
@@ -59,7 +59,7 @@ function FundBillModal({ isOpen, setIsOpen, bill }: Props) {
     abi: ERC20ABI,
     functionName: "allowance",
     address: toOxString(bill.billToken),
-    args: [toOxString(address), dexaBillAddr],
+    args: [toOxString(address), FundingAddr],
     scopeKey: bill.billToken,
   });
 
@@ -89,7 +89,7 @@ function FundBillModal({ isOpen, setIsOpen, bill }: Props) {
             abi: ERC20ABI,
             address: toOxString(bill.billToken),
             functionName: "approve",
-            args: [dexaBillAddr, parseEther(amount)],
+            args: [FundingAddr, parseEther(amount)],
           },
           {
             onSuccess: async (data) => {
@@ -122,8 +122,8 @@ function FundBillModal({ isOpen, setIsOpen, bill }: Props) {
     });
     await writeContractAsync(
       {
-        abi: DexaBillAbi,
-        address: dexaBillAddr,
+        abi: FundingAbi,
+        address: FundingAddr,
         functionName: "fundBill",
         args: [bill.id, bill.billToken, parseEther(`${amount}`)],
       },

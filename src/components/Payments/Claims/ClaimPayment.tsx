@@ -23,7 +23,7 @@ function ClaimPaymentView() {
   const { wallet } = useAppSelector(selectConnector);
   const { success, loading, error } = useToast();
   const { writeContractAsync } = useWriteContract();
-  const { DexaPayAbi, dexaPayAddr } = useDexa();
+  const { GatewayAbi, GatewayAddr } = useDexa();
   const [token, setToken] = useState<Token>();
   const { payment, otp, email, paymentCode, isClaimed, setIsClaimed } =
     useClaimPay();
@@ -61,8 +61,8 @@ function ClaimPaymentView() {
       console.log(response);
       await writeContractAsync(
         {
-          abi: DexaPayAbi,
-          address: dexaPayAddr,
+          abi: GatewayAbi,
+          address: GatewayAddr,
           functionName: "claimEmailBalance",
           args: [emailHash, tokenAddress, payIdHash, sig],
         },

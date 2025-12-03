@@ -8,6 +8,7 @@ import TabsRoot from "../Tabs/TabsRoot";
 import TabsList from "../Tabs/TabsList";
 import TabsContent from "../Tabs/TabsContent";
 import TabsHeader from "../Tabs/TabsHeader";
+import BillTable from "../Bills/Table/BillTable";
 
 function ListGroups() {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -65,17 +66,17 @@ function ListGroups() {
           </TabsList>
           <TabsContent value="tab1" activeTabId={activeTab}>
             <div className="flex-1 mt-1">
-              <BillTable bills={bills} />
+              {/* <BillTable bills={bills} /> */}
             </div>
           </TabsContent>
           <TabsContent value="tab2" activeTabId={activeTab}>
             <div className="flex-1 mt-1">
-              <BillTable bills={activeBills} />
+              {/* <BillTable bills={activeBills} /> */}
             </div>
           </TabsContent>
           <TabsContent value="tab3" activeTabId={activeTab}>
             <div className="flex-1 mt-1">
-              <BillTable bills={completedBills} />
+              {/* <BillTable bills={completedBills} /> */}
             </div>
           </TabsContent>
         </TabsRoot>

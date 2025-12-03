@@ -1,52 +1,19 @@
 "use client";
 
-import React, { Fragment, useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Label from "../Form/Label";
 import Input from "../Form/Input";
 import Button from "../Form/Button";
-import {
-  CircleHelp,
-  ClipboardPenLineIcon,
-  InfoIcon,
-  User2Icon,
-  XIcon,
-} from "lucide-react";
+import { CircleHelp } from "lucide-react";
 import Select, { Options } from "../Form/Select";
 import { Tokens } from "@/libs/tokens";
 import { useForm, Controller, FieldValues } from "react-hook-form";
-import { useAccount, useReadContract, useWriteContract } from "wagmi";
-import { useWriteContracts, useCapabilities } from "wagmi/experimental";
+import { useAccount, useWriteContract } from "wagmi";
 import { useDexa } from "@/context/dexa.context";
-import { UserBalance, UserInterface } from "@/interfaces/user.interface";
-import {
-  formatWalletAddress,
-  isLikelyUsername,
-  toOxString,
-  walletToLowercase,
-  weiToUnit,
-} from "@/libs/helpers";
 import ShowError from "../Form/ShowError";
-import useClipBoard from "@/hooks/clipboard.hook";
 import useToast from "@/hooks/toast.hook";
-import ethers, {
-  parseEther,
-  isAddress,
-  hexlify,
-  toUtf8Bytes,
-  encodeBytes32String,
-  toUtf8String,
-  getBytes,
-  toQuantity,
-} from "ethers";
-import debounce from "debounce";
-import { addBeneficiary } from "@/actions/beneficiary.action";
-import { queryClient } from "../RootProviders";
+import { parseEther } from "ethers";
 import TextArea from "../Form/TextArea";
-import { sendPayWithEmail } from "@/actions/request.action";
-import { useAuth } from "@/context/auth.context";
-import { stringToBytes, stringToHex } from "viem";
-import { baseSepolia } from "viem/chains";
-import useDexaCapabilities from "@/hooks/capabilities.hook";
 import Radio from "../Form/Radio";
 import Tooltip from "../Form/ToolTip";
 import FileSelector from "../ui/FileSelector";

@@ -16,10 +16,10 @@ type Props = {
 };
 function BillRemiteTab({ bill }: Props) {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
-  const { dexaBillAddr, DexaBillAbi } = useDexa();
+  const { FundingAddr, FundingAbi } = useDexa();
   const { data } = useReadContract({
-    abi: DexaBillAbi,
-    address: dexaBillAddr,
+    abi: FundingAbi,
+    address: FundingAddr,
     functionName: "getBillRemittances",
     args: [bill.id],
   });
