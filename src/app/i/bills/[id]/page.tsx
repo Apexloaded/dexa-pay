@@ -25,12 +25,12 @@ function BillDetails() {
   const [isOpen, setIsOpen] = useState(false);
   const [bill, setBill] = useState<Bills>();
   const [token, setToken] = useState<Token>();
-  const { DexaBillAbi, dexaBillAddr } = useDexa();
+  const { FundingAbi, FundingAddr } = useDexa();
   const { isConnected } = useAppSelector(selectConnector);
   const [connectModal, setConnectModal] = useState<boolean>(false);
   const { data, isLoading } = useReadContract({
-    abi: DexaBillAbi,
-    address: dexaBillAddr,
+    abi: FundingAbi,
+    address: FundingAddr,
     functionName: "getBill",
     args: [id],
   });
